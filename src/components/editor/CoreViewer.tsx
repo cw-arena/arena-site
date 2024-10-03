@@ -2,8 +2,8 @@ import { gutter, GutterMarker } from "@codemirror/view";
 import Box from "@mui/material/Box";
 import { copilot } from "@uiw/codemirror-theme-copilot";
 import CodeMirror from "@uiw/react-codemirror";
-import { cwHighlighter } from "./highlighter";
 import "./CoreViewer.css";
+import { cwHighlighter } from "./highlighter";
 
 const lineNumberMarker = (width: number, lineNumber: number) =>
   new (class extends GutterMarker {

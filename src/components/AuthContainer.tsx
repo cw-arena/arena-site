@@ -1,8 +1,12 @@
+import LanIcon from "@mui/icons-material/Lan";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { ReactNode } from "react";
 import { Redirect } from "wouter";
 import { useAuthUser } from "../components/AuthProvider";
-import { Box, Card, Container, Stack, Typography } from "@mui/material";
-import LanIcon from "@mui/icons-material/Lan";
-import { ReactNode } from "react";
 
 type AuthContainerProps = {
   children: ReactNode;
