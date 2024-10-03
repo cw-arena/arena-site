@@ -1,8 +1,9 @@
 import { RouteProps } from "wouter";
 import HomePage from "./pages/HomePage";
 import ComingSoonPage from "./pages/ComingSoonPage";
+import DebuggerPage from "./pages/DebuggerPage";
 
-type AppRoute = {
+export type AppRoute = {
   name?: string;
   href: string;
   component: RouteProps["component"];
@@ -20,8 +21,12 @@ export const ROUTES: AppRoute[] = [
     component: ComingSoonPage,
   },
   {
-    name: "Editor",
-    href: "/programs/new",
-    component: ComingSoonPage,
+    name: "Debugger",
+    href: "/debugger",
+    component: DebuggerPage,
   },
 ];
+
+// TODO: Support route paths with parameter bindings in them
+export const matchesRoute = (route: AppRoute, path: string) =>
+  route.href === path;

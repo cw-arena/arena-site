@@ -1,14 +1,14 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
-import { ROUTES } from "../routes";
 import { Link, useLocation } from "wouter";
+import { matchesRoute, ROUTES } from "../routes";
 
 const NavigationBar = () => {
   const [location] = useLocation();
 
   return (
-    <AppBar position="static" sx={{ mb: 7.5 }}>
+    <AppBar position="static">
       <Toolbar sx={{ gap: 5 }}>
         {ROUTES.filter((route) => typeof route.name !== "undefined").map(
           (route) => (
@@ -18,7 +18,7 @@ const NavigationBar = () => {
               href={route.href}
               size="large"
               sx={{ color: "white" }}
-              disabled={route.href === location}
+              disabled={matchesRoute(route, location)}
             >
               {route.name}
             </Button>
