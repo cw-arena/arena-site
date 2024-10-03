@@ -1,11 +1,11 @@
 import { Container, Typography } from "@mui/material";
 
-const ComingSoonPage = () => (
+const NotFoundPage = () => (
   <Container>
     <Typography variant="h4" align="center" fontWeight="bold">
-      Coming Soon
+      Page not found
     </Typography>
   </Container>
 );
 
-export default ComingSoonPage;
+export default NotFoundPage;

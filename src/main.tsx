@@ -4,9 +4,9 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
+import { AuthProvider } from "./components/AuthProvider.tsx";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,10 +15,10 @@ const darkTheme = createTheme({
 });
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+  <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
+    <AuthProvider>
       <App />
-    </ThemeProvider>
-  </StrictMode>
+    </AuthProvider>
+  </ThemeProvider>
 );

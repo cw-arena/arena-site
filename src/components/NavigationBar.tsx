@@ -37,9 +37,9 @@ const NavigationBar = () => {
         </Box>
         <Box marginLeft="auto">
           {isLoggedIn ? (
-            <LinkButton href="/logout">Sign out</LinkButton>
+            <LinkButton href="/accounts/logout">Sign out</LinkButton>
           ) : (
-            <LinkButton href="/login">Sign in</LinkButton>
+            <LinkButton href="/accounts/login">Sign in</LinkButton>
           )}
         </Box>
       </Toolbar>
