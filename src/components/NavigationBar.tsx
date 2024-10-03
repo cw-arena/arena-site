@@ -1,47 +1,45 @@
-import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-import Toolbar from "@mui/material/Toolbar";
-import { Link, useLocation } from "wouter";
-import { matchesRoute, ROUTES } from "../routes";
 import LanIcon from "@mui/icons-material/Lan";
+import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { default as MaterialLink } from "@mui/material/Link";
+import { useLocation } from "wouter";
+import { matchesRoute, ROUTES } from "../routes";
+import Link from "./ui/Link";
+import LinkButton from "./ui/LinkButton";
 
 const NavigationBar = () => {
   const [location] = useLocation();
+  const isLoggedIn = false;
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <MaterialLink
-          display="inline-flex"
-          color="white"
-          component={Link}
-          href="/"
-          underline="none"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Link justifyContent="center" alignItems="center">
           <LanIcon />
           <Typography component="span" sx={{ ml: 2, mr: 7 }} fontWeight="bold">
             CW Arena
           </Typography>
-        </MaterialLink>
+        </Link>
         <Box display="flex" sx={{ gap: 2 }}>
           {ROUTES.filter((route) => typeof route.name !== "undefined").map(
-            (route) => (
-              <Button
-                key={route.href}
-                component={Link}
-                href={route.href}
-                size="large"
-                sx={{ color: "white" }}
-                disabled={matchesRoute(route, location)}
-              >
-                {route.name}
-              </Button>
-            )
+            (route) =>
+              isLoggedIn || !route.authenticated ? (
+                <LinkButton
+                  key={route.href}
+                  href={route.href}
+                  disabled={matchesRoute(route, location)}
+                >
+                  {route.name}
+                </LinkButton>
+              ) : null
+          )}
+        </Box>
+        <Box marginLeft="auto">
+          {isLoggedIn ? (
+            <LinkButton href="/logout">Sign out</LinkButton>
+          ) : (
+            <LinkButton href="/login">Sign in</LinkButton>
           )}
         </Box>
       </Toolbar>

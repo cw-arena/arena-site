@@ -7,6 +7,7 @@ export type AppRoute = {
   name?: string;
   href: string;
   component: RouteProps["component"];
+  authenticated?: boolean;
 };
 
 export const ROUTES: AppRoute[] = [
@@ -24,6 +25,12 @@ export const ROUTES: AppRoute[] = [
     name: "Debugger",
     href: "/debugger",
     component: DebuggerPage,
+  },
+  {
+    name: "Programs",
+    href: "/programs",
+    component: ComingSoonPage,
+    authenticated: true,
   },
 ];
 
