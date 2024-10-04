@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import DebuggerPage from "./pages/DebuggerPage";
 import LoginPage from "./pages/accounts/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SignupPage from "./pages/accounts/SignupPage";
+import LogoutPage from "./pages/accounts/LogoutPage";
 
 export type AppRoute = {
   name?: string;
@@ -36,6 +38,14 @@ export const ROUTES: AppRoute[] = [
   {
     href: "/accounts/login",
     component: LoginPage,
+  },
+  {
+    href: "/accounts/signup",
+    component: SignupPage,
+  },
+  {
+    href: "/accounts/logout",
+    component: LogoutPage,
   },
 ];
 

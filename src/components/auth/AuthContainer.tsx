@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 import { Redirect } from "wouter";
-import { useAuthUser } from "../components/AuthProvider";
+import { useAuthUser } from "./AuthProvider";
 
 type AuthContainerProps = {
   children: ReactNode;

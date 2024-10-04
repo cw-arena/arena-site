@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import AuthContainer from "../../components/auth/AuthContainer";
 import Link from "../../components/ui/Link";
@@ -14,14 +14,15 @@ const emptyFormField = () => ({
   error: false,
 });
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [email, setEmail] = useState(emptyFormField());
   const [password, setPassword] = useState(emptyFormField());
+  const [confirmPassword, setConfirmPassword] = useState(emptyFormField());
   const [loading, setLoading] = useState(false);
-  const [loginError, setLoginError] = useState("");
+  const [signupError, setSignupError] = useState("");
 
   const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginError("");
+    setSignupError("");
     setEmail({
       value: ev.target.value,
       error: false,
@@ -29,17 +30,26 @@ const LoginPage = () => {
   };
 
   const onPasswordChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginError("");
+    setSignupError("");
     setPassword({
       value: ev.target.value,
       error: false,
     });
   };
 
+  const onConfirmPasswordChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setSignupError("");
+    setConfirmPassword({
+      value: ev.target.value,
+      error: false,
+    });
+  };
+
   const onLogin = () => {
-    setLoginError("");
+    setSignupError("");
 
     let valid = true;
+
     if (email.value === "") {
       valid = false;
       setEmail({
@@ -56,17 +66,28 @@ const LoginPage = () => {
       });
     }
 
+    if (
+      confirmPassword.value === "" ||
+      confirmPassword.value !== password.value
+    ) {
+      valid = false;
+      setConfirmPassword({
+        value: password.value,
+        error: true,
+      });
+    }
+
     if (!valid) {
       return;
     }
 
     setLoading(true);
-    signInWithEmailAndPassword(auth, email.value, password.value)
+    createUserWithEmailAndPassword(auth, email.value, password.value)
       .then((credential) => {
         console.log(credential);
       })
       .catch(() => {
-        setLoginError("The username/password is not correct.");
+        setSignupError("Could not create account.");
       })
       .finally(() => {
         setLoading(false);
@@ -92,6 +113,15 @@ const LoginPage = () => {
         helperText={password.error ? "Required" : " "}
         onChange={onPasswordChange}
       />
+      <TextField
+        label="Confirm password"
+        type="password"
+        size="small"
+        value={confirmPassword.value}
+        error={confirmPassword.error}
+        helperText={confirmPassword.error ? "Must match password" : " "}
+        onChange={onConfirmPasswordChange}
+      />
       <Box position="relative">
         <Button
           size="large"
@@ -100,7 +130,7 @@ const LoginPage = () => {
           disabled={loading}
           fullWidth
         >
-          Sign in
+          Sign up
         </Button>
         {loading && (
           <CircularProgress
@@ -118,16 +148,15 @@ const LoginPage = () => {
       <Typography
         component="span"
         color="red"
-        visibility={loginError ? "visible" : "hidden"}
+        visibility={signupError ? "visible" : "hidden"}
       >
-        {loginError || "No error"}
+        {signupError || "No error"}
       </Typography>
-      <Box display="flex" justifyContent="space-between" pt={1}>
-        <Link href="/accounts/forgot-password">Forgot password?</Link>
-        <Link href="/accounts/signup">Sign up</Link>
+      <Box display="flex" justifyContent="center" pt={1}>
+        Have an account? &nbsp; <Link href="/accounts/login">Sign in</Link>
       </Box>
     </AuthContainer>
   );
 };
 
-export default LoginPage;
+export default SignupPage;

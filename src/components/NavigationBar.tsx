@@ -7,10 +7,11 @@ import { useLocation } from "wouter";
 import { matchesRoute, ROUTES } from "../routes";
 import Link from "./ui/Link";
 import LinkButton from "./ui/LinkButton";
+import { useAuthUser } from "./auth/AuthProvider";
 
 const NavigationBar = () => {
   const [location] = useLocation();
-  const isLoggedIn = false;
+  const isLoggedIn = useAuthUser() !== null;
 
   return (
     <AppBar position="static">

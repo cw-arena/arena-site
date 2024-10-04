@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import { AuthProvider } from "./components/AuthProvider.tsx";
+import { AuthProvider } from "./components/auth/AuthProvider.tsx";
 
 const darkTheme = createTheme({
   palette: {
