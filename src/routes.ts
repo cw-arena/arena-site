@@ -1,10 +1,11 @@
 import { RouteProps } from "wouter";
-import HomePage from "./pages/HomePage";
-import DebuggerPage from "./pages/DebuggerPage";
 import LoginPage from "./pages/accounts/LoginPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import SignupPage from "./pages/accounts/SignupPage";
 import LogoutPage from "./pages/accounts/LogoutPage";
+import SignupPage from "./pages/accounts/SignupPage";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import DebuggerPage from "./pages/programs/DebuggerPage";
+import UserProgramsPage from "./pages/programs/UserProgramsPage";
 
 export type AppRoute = {
   name?: string;
@@ -26,13 +27,13 @@ export const ROUTES: AppRoute[] = [
   },
   {
     name: "Debugger",
-    href: "/debugger",
+    href: "/programs/debugger",
     component: DebuggerPage,
   },
   {
     name: "Programs",
     href: "/programs",
-    component: NotFoundPage,
+    component: UserProgramsPage,
     authenticated: true,
   },
   {

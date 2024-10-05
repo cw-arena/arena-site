@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
-import CoreViewer from "../components/editor/CoreViewer";
-import ProgramEditor from "../components/editor/ProgramEditor";
+import CoreViewer from "../../components/editor/CoreViewer";
+import ProgramEditor from "../../components/editor/ProgramEditor";
 
 const memory: string[] = [];
 for (let i = 1; i <= 8000; ++i) {

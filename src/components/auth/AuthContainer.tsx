@@ -6,15 +6,15 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 import { Redirect } from "wouter";
-import { useAuthUser } from "./AuthProvider";
+import { useAuthData } from "./AuthProvider";
 
 type AuthContainerProps = {
   children: ReactNode;
 };
 
 const AuthContainer = ({ children }: AuthContainerProps) => {
-  const user = useAuthUser();
-  if (user !== null) {
+  const data = useAuthData();
+  if (data !== null) {
     return <Redirect to="/" />;
   }
 

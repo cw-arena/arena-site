@@ -5,13 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useLocation } from "wouter";
 import { matchesRoute, ROUTES } from "../routes";
+import { useAuthData } from "./auth/AuthProvider";
 import Link from "./ui/Link";
 import LinkButton from "./ui/LinkButton";
-import { useAuthUser } from "./auth/AuthProvider";
 
 const NavigationBar = () => {
   const [location] = useLocation();
-  const isLoggedIn = useAuthUser() !== null;
+  const isLoggedIn = useAuthData() !== null;
 
   return (
     <AppBar position="static">
